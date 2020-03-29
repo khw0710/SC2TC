@@ -14,8 +14,17 @@ class Converter(object):
     def output(self):
         return self.result
 
-result = Converter(open("test.txt", encoding="utf-8").read()).output()
 
-f = open("result.txt","w+")
+
+with open("01.txt", 'r', encoding='utf-8') as f:
+    try:
+        contents = f.read()
+    except:
+        with open("01.txt", 'r', encoding='GBK') as f:
+            contents = f.read()
+
+result = Converter(contents).output()
+f = open("01result.txt","w+")
 f.write(result)
-f.close() 
+f.close()
+ 
