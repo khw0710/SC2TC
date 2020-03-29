@@ -22,6 +22,11 @@ class Converter(object):
 
 def main( arg ):
     input_dir = Path( args.path )
+    #print(input_dir)
+    output_dir = Path (args.path ).parents[0]
+    #print(output_dir)
+    fn = os.path.join(output_dir,"tc_{}.txt".format(input_dir.stem))
+    #print(fn)
     with open(input_dir, 'r', encoding='utf-8') as f:
         try:
             contents = f.read()
@@ -29,7 +34,7 @@ def main( arg ):
             with open(input_dir, 'r', encoding='GBK') as f:
                 contents = f.read()
     result = Converter(contents).output()
-    f = open("01result.txt","w+")
+    f = open( fn ,"w+")
     f.write(result)
     f.close()
 
